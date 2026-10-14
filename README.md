@@ -110,7 +110,7 @@ git rebase feature/registro-entregas
 
 El rebase vuelve a aplicar los commits propios sobre la punta de la rama indicada, dejando una historia lineal y cambiando los identificadores de los commits reescritos. Merge y rebase pueden producir conflictos si ambos tocaron la misma zona; resuélvelos antes de continuar. No hagas rebase de ramas compartidas o publicadas sin coordinación.
 
-En esta práctica, el merge de las dos descripciones sí produjo el conflicto esperado. También se usa una rama de práctica separada para rebase sin modificar `main`. La sincronización de `pull` y el `push` se deben hacer contra el remoto del equipo y verificarse antes de abrir el PR.
+En esta práctica, el merge de las dos descripciones sí produjo el conflicto esperado. También se usa una rama de práctica separada para rebase sin modificar `main`. `git pull --ff-only origin main` terminó con “Already up to date”. El `git push --dry-run origin feature/prototipo-ecocolecta` fue rechazado con HTTP 403 por los permisos de la cuenta configurada en el remoto HTTPS; al ser una simulación (`--dry-run`), no publicó ni modificó ninguna rama. Para completar el push real, un integrante con acceso debe configurar su autenticación o URL SSH, ejecutar `git push -u origin feature/prototipo-ecocolecta` y abrir el PR.
 
 ## Automatización
 
