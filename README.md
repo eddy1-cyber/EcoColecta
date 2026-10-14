@@ -1,6 +1,6 @@
 # EcoColecta
 
-EcoColecta ayuda a la comunidad a encontrar puntos de reciclaje y registrar sus entregas de materiales.
+Prototipo comunitario para encontrar puntos de reciclaje, proponer nuevos puntos y registrar entregas de materiales recuperables.
 
 ## Funcionalidades
 
@@ -72,7 +72,45 @@ Agrega la llave **pública** copiada en GitHub → Settings → SSH and GPG keys
 
 ### Reto de resolución de conflictos
 
-Para practicarlo, coordinen dos ramas de funcionalidad y editen intencionalmente la misma línea identificable de este README (por ejemplo, la descripción inicial) con textos distintos. Confirmen ambos cambios y fusionen una rama sobre la otra. Ante el marcador `<<<<<<<`, `=======`, `>>>>>>>`, acuerden el texto final, eliminen los marcadores, verifiquen el resultado, confirmen la resolución y completen la integración mediante PR. Documenten en el Issue o PR qué líneas se conservaron y por qué. No dejen el conflicto ni sus marcadores en `main`.
+Para repetir la práctica en equipo, creen dos ramas desde la misma base y editen intencionalmente la misma línea de este README con textos distintos. Confirmen ambos cambios y fusionen una rama sobre la otra. Ante los marcadores `<<<<<<<`, `=======` y `>>>>>>>`, acuerden el texto final, eliminen los marcadores, verifiquen el resultado y confirmen la resolución. Documenten en el Issue o PR qué se conservó y por qué; no integren marcadores de conflicto en `main`.
+
+#### Simulación realizada
+
+Se partió del mismo commit en `practice/conflicto-integrante-a` y `practice/conflicto-integrante-b`. Ambas ramas cambiaron la descripción inicial de este README con propuestas distintas y se confirmaron por separado. Al ejecutar `git merge --no-commit --no-ff practice/conflicto-integrante-b` desde la rama A, Git informó un conflicto de contenido en `README.md` y mostró las dos versiones entre marcadores.
+
+La resolución combinó el propósito de ambas propuestas en una sola descripción: “Prototipo comunitario para encontrar puntos de reciclaje, proponer nuevos puntos y registrar entregas de materiales recuperables.” Se eliminaron todos los marcadores, se revisó el archivo y se confirmó la resolución en el commit de merge. La simulación representa el trabajo de dos integrantes mediante ramas locales; para completar el requisito de revisión entre personas, cada integrante debe realizar su propio cambio y el compañero debe revisar el PR.
+
+#### Práctica de `pull`, `push`, merge y rebase
+
+En un clon con el remoto `origin` configurado:
+
+```bash
+git switch main
+git pull --ff-only origin main
+git switch -c feature/registro-entregas
+# hacer cambios, confirmarlos y publicarlos:
+git push -u origin feature/registro-entregas
+```
+
+`pull` descarga cambios del remoto y los integra en la rama actual; con `--ff-only` no crea un merge inesperado. `push` publica commits locales en el remoto, y `-u` configura el seguimiento de esa rama. No se debe publicar directamente `main`; publiquen la rama y abran un PR.
+
+Para comparar la integración de dos ramas, sobre ramas de práctica:
+
+```bash
+git switch feature/registro-entregas
+git merge --no-ff feature/otra-funcionalidad
+```
+
+El merge conserva ambas líneas de historia y crea un commit de merge. Como comparación, desde una rama de práctica propia:
+
+```bash
+git switch feature/otra-funcionalidad
+git rebase feature/registro-entregas
+```
+
+El rebase vuelve a aplicar los commits propios sobre la punta de la rama indicada, dejando una historia lineal y cambiando los identificadores de los commits reescritos. Merge y rebase pueden producir conflictos si ambos tocaron la misma zona; resuélvelos antes de continuar. No hagas rebase de ramas compartidas o publicadas sin coordinación.
+
+En esta práctica, el merge de las dos descripciones sí produjo el conflicto esperado. También se usa una rama de práctica separada para rebase sin modificar `main`. La sincronización de `pull` y el `push` se deben hacer contra el remoto del equipo y verificarse antes de abrir el PR.
 
 ## Automatización
 
