@@ -115,3 +115,7 @@ En esta práctica, el merge de las dos descripciones sí produjo el conflicto es
 ## Automatización
 
 El workflow [`.github/workflows/main.yml`](.github/workflows/main.yml) se ejecuta en cada push y Pull Request hacia `main`. Comprueba la sintaxis de JavaScript con `node --check` y busca errores de whitespace en el diff con `git diff --check`. Un PR debe pasar estas verificaciones antes de integrarse.
+
+### Demostración local de rebase
+
+En la rama `practice/rebase-demostracion` se agregó esta nota desde la base común; después se rebasó sobre `practice/conflicto-integrante-a`. Al no editar la misma zona, el rebase se completó sin conflicto y volvió a aplicar el commit sobre la historia ya integrada. A diferencia del merge de las dos propuestas anteriores, no creó otro commit de merge.
