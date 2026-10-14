@@ -1,6 +1,6 @@
 # EcoColecta
 
-Prototipo web comunitario para consultar puntos de reciclaje, proponer nuevos puntos y registrar entregas de materiales reciclables.
+Plataforma vecinal para ubicar centros de acopio y llevar el registro de cada material recuperado.
 
 ## Funcionalidades
 
